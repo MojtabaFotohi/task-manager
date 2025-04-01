@@ -7,4 +7,38 @@
         display: block !important;
     }
   }
+
+
+  .circles-chart {
+
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+  }
   
+  .circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid #333; 
+  }
+  
+  .circle1 {
+    background-color: #4CAF50; 
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+  }
+  
+  .circle2 {
+    background-color: #FF5722;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
+  }
+
+
+  @media (min-width: 1024px) {
+    .circle {
+        
+        width: 300px;
+        height: 300px;
+
+      }
+  }
