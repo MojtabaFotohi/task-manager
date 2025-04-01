@@ -1,0 +1,10 @@
+@media (min-width: 1400px) {
+    #preheader1 {
+      display: none;
+    }
+
+    #preheader2{
+        display: block !important;
+    }
+  }
+  

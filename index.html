@@ -7,8 +7,79 @@
     <link rel="stylesheet" href="public/css/styles.css">
     <title>Task Manager | mojtaba fotohi</title>
 </head>
-<body>
-    
+
+<body class="overflow-x-hidden">
+
+    <header class="bg-zinc-900 h-50 ">
+        <h1 class="flex justify-center text-[25px] font-bold  py-6 text-white">Task Manager</h1>
+    </header>
+
+
+<section id="preheader1">
+<div class=" flex justify-around py-5 bg-sky-900 items-center  px-3">
+    <div id="search">
+        <input type="search" name="" id="" placeholder="Search a Task ...!" class="p-2 rounded-lg text-black w-80 sm:w-[500px] md:w-[600px] lg:w-[800px]"> <!--xl-->
+    </div>
+    <div>
+        <button id="addTask" type="button" class="bg-green-700  rounded-lg py-3 px-2  text-sm  w-24 sm:w-[100px] md:w-[150px] lg:w-[200px]">add Task</button>
+    </div>
+</div>
+<div class=" flex justify-around py-5 bg-sky-500 items-center  ">
+    <div id="filterStatus">
+        <select name="" id="" class="p-2 rounded-lg text-black w-48 sm:w-[300px] md:w-[370px] lg:w-[500px] ">
+            <option value="">All</option>
+            <option value="">low</option>
+            <option value="">medium</option>
+            <option value="">high</option>
+        </select>
+    </div>
+    <div id="filterType">
+        <select name="" id="" class="p-2 rounded-lg text-black w-48 sm:w-[300px] md:w-[370px] lg:w-[500px]">
+            <option value="">All</option>
+            <option value="">to do</option>
+            <option value="">in proccess</option>
+            <option value="">closed</option>
+            <option value="">frozen</option>
+        </select>
+    </div>
+</div>
+</section>
+
+
+
+
+
+
+<section id="preheader2" style="display: none;" >
+    <div class=" flex justify-between py-5 bg-sky-900 items-center  px-3">
+        <div id="search" >
+            <input type="search" name="" id="" placeholder="Search a Task ...!" class="p-2 rounded-lg text-black w-[600px]"> <!--xl-->
+        </div>
+        <div id="filterStatus">
+            <select name="" id="" class="p-2 rounded-lg text-black w-64 ">
+                <option value="">All</option>
+                <option value="">low</option>
+                <option value="">medium</option>
+                <option value="">high</option>
+            </select>
+        </div>
+        <div id="filterType">
+            <select name="" id="" class="p-2 rounded-lg text-black w-64">
+                <option value="">All</option>
+                <option value="">to do</option>
+                <option value="">in proccess</option>
+                <option value="">closed</option>
+                <option value="">frozen</option>
+            </select>
+        </div>
+        <div>
+            <button id="addTask" type="button" class="bg-red-700  rounded-lg py-3 px-2  text-sm  w-64">add Task</button>
+        </div>
+    </div>
+</section>
+
+
+
 
 
 
