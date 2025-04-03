@@ -115,3 +115,26 @@ body {
 
       }
   }
+
+
+
+
+  
+.task-text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    padding-top:10px; 
+    padding-bottom:10px;
+}
+
+
+#left-side-details hr{
+  border: 1px solid #ffffff;
+  margin-bottom: 10px;
+}
+
+
+
+
+

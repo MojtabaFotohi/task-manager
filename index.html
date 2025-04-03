@@ -10,9 +10,9 @@
 
 <body class="overflow-x-hidden">
 
-    <header class="bg-zinc-900 h-50 ">
-        <h1 class="flex justify-center text-[25px] font-bold  py-6 text-white">Task Manager</h1>
-    </header>
+<header class="bg-zinc-900 h-50 ">
+    <h1 class="flex justify-center text-[25px] font-bold  py-6 text-white">Task Manager</h1>
+</header>
 
 
 <section id="preheader1">
@@ -25,17 +25,17 @@
     </div>
 </div>
 <div class=" flex justify-around py-5 bg-sky-500 items-center  ">
-    <div id="filterStatus">
+    <div id="filterPriority">
         <select name="" id="" class="p-2 rounded-lg text-black w-48 sm:w-[300px] md:w-[370px] lg:w-[500px] ">
-            <option value="">All Status</option>
+            <option value="">All Priority</option>
             <option value="">Low</option>
             <option value="">Medium</option>
             <option value="">High</option>
         </select>
     </div>
-    <div id="filterType">
+    <div id="filterStage">
         <select name="" id="" class="p-2 rounded-lg text-black w-48 sm:w-[300px] md:w-[370px] lg:w-[500px]">
-            <option value="">All Task</option>
+            <option value="">All Stage</option>
             <option value="">To Do</option>
             <option value="">in Process</option>
             <option value="">Closed</option>
@@ -52,17 +52,17 @@
         <div id="search" >
             <input type="search" name="" id="" placeholder="Search a Task ...!" class="p-2 rounded-lg text-black w-[600px]"> <!--xl-->
         </div>
-        <div id="filterStatus">
+        <div id="filterPriority">
             <select name="" id="" class="p-2 rounded-lg text-black w-64 ">
-                <option value="">All Status</option>
+                <option value="">All Priority</option>
                 <option value="">Low</option>
                 <option value="">Medium</option>
                 <option value="">High</option>
             </select>
         </div>
-        <div id="filterType">
+        <div id="filterStage">
             <select name="" id="" class="p-2 rounded-lg text-black w-64">
-                <option value="">All Task</option>
+                <option value="">All Stage</option>
                 <option value="">To Do</option>
                 <option value="">in Process</option>
                 <option value="">Closed</option>
@@ -70,30 +70,64 @@
             </select>
         </div>
         <div>
-            <button id="addTask" type="button" class="bg-green-700  rounded-lg py-3 px-2  text-sm  w-64">add Task</button>
+            <button id="addTask" type="button" class="bg-green-700  rounded-lg py-3 px-2  text-md  w-64">add Task</button>
         </div>
     </div>
 </section>
 
 
-<section id="body" class="flex w-full h-[1200px] " >
-    <div id="left-side-details" class="bg-green-700 w-1/3  xl:w-1/5 h-[1200px]">
+<section id="body" class="flex w-full h-auto lg:h-[1200px] " >
+    <div id="left-side-details" class="bg-green-700 w-1/3  xl:w-1/5 h-auto p-1">
+
+            <p>Task Name :</p>
+            <p id="taskName" class="task-text">ddddd</p>
+            <hr>
+            <p>Task Description :</p>
+            <p id="taskDescription" class="task-text">sdsds</p>
+            <hr>
+            <p>Task Priority :</p>
+            <p id="taskPriority" class="task-text">dsdsd</p>
+            <hr>
+            <p>Task Status :</p>
+            <p id="taskStatus" class="task-text">sdsdsds</p>
+            <hr>
+            <p>Task Due Date :</p>
+            <p id="taskDueDate" class="task-text">dsdsdsds</p>
+            <hr>
+            <p>Task Created At :</p>
+            <p id="taskCreatedAt" class="task-text">csdsdssdc</p>
+            
 
     </div>
-    <div id="show-tasks" class="bg-red-700  w-2/3  xl:w-4/5 h-[800px]">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[95%] m-[20px]">
-            <div class="bg-yellow-500"></div>
-            <div class="bg-blue-500"></div>
-            <div class="bg-pink-500"></div>
-            <div class="bg-gray-500"></div>
+    <div id="show-tasks" class="bg-red-700  w-2/3  xl:w-4/5 ">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4  m-[20px] ">
+
+            <div class="relative bg-yellow-500 rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
+                <div class="sticky top-0 bg-black flex items-center justify-center py-2 border-b-[4px] border-white text-white">To Do</div>
+                <div class="ToDoShowTasks p-2"></div>
+            </div>
+
+            <div class="relative bg-blue-500   rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
+                <div class="sticky top-0 bg-black flex items-center justify-center py-2 border-b-[4px] border-white text-white">in Process</div>
+                <div class="InProcessShowTasks p-2"></div>
+            </div>
+
+            <div class="relative bg-pink-500   rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
+                <div class="sticky top-0 bg-black flex items-center justify-center py-2 border-b-[4px] border-white text-white">Closed</div>
+                <div class="ClosedShowTasks p-2"></div>
+            </div>
+
+            <div class="relative bg-gray-500   rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
+                <div class="sticky top-0 bg-black flex items-center justify-center py-2 border-b-[4px] border-white text-white">Stopped</div>
+                <div class="StoppedShowTasks p-2"></div>
+            </div>
+
         </div>
         <div class="circles-chart grid lg:flex ">
             <div class="circle circle1"></div>
             <div class="circle circle2"></div>
         </div>
     </div>
-
-
 </section>
 
 
@@ -108,9 +142,6 @@
 </footer>
     
 
-    
-
-
-    <script src="src/scripts.js"></script>
+<script src="src/scripts.js"></script>
 </body>
 </html>
