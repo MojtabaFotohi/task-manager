@@ -101,24 +101,74 @@
     </div>
     <div id="show-tasks" class="bg-red-700  w-2/3  xl:w-4/5 ">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4  m-[20px] ">
+            
 
             <div class="relative bg-yellow-500 rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
-                <div class="sticky top-0 bg-black flex items-center justify-center py-2 border-b-[4px] border-white text-white">To Do</div>
+                <div class="FS sticky top-0 bg-black flex items-center justify-between px-2 xl:px-4 py-2 border-b-[4px] border-white text-white">
+                    <h2 class="xl:text-lg font-semibold">To Do</h2>
+                    <div class="flex gap-3">
+                        <span class="todototal text-gray-300">Total : 0</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="todolow text-green-400">Low : 0</span>
+                        <span class="todomedium text-yellow-400">Medium : 0</span>
+                        <span class="todohigh text-red-400">High : 0</span>
+                    </div>
+                </div>
                 <div class="ToDoShowTasks p-2"></div>
             </div>
 
+
+
             <div class="relative bg-blue-500   rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
-                <div class="sticky top-0 bg-black flex items-center justify-center py-2 border-b-[4px] border-white text-white">in Process</div>
+                <div class="FS sticky top-0 bg-black flex items-center justify-between px-2 xl:px-4 py-2 border-b-[4px] border-white text-white">
+                    <h2 class="xl:text-lg font-semibold">in Process</h2>
+                    <div class="flex gap-3">
+                        <span class="inprocesstotal text-gray-300">Total : 0</span>
+
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="inprocesslow text-green-400">Low : 0</span>
+                        <span class="inprocessmedium text-yellow-400">Medium : 0</span>
+                        <span class="inprocesshigh   text-red-400">High : 0</span>
+                    </div>
+                </div>
                 <div class="InProcessShowTasks p-2"></div>
             </div>
 
+
+
+
             <div class="relative bg-pink-500   rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
-                <div class="sticky top-0 bg-black flex items-center justify-center py-2 border-b-[4px] border-white text-white">Closed</div>
+                <div class="FS sticky top-0 bg-black flex items-center justify-between px-2 xl:px-4 py-2 border-b-[4px] border-white text-white">
+                    <h2 class="xl:text-lg font-semibold">closed</h2>
+                    <div class="flex gap-3">
+                        <span class="closedtotal text-gray-300">Total : 0</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="closedlow text-green-400">Low : 0</span>
+                        <span class="closedmedium text-yellow-400">Medium : 0</span>
+                        <span class="closedhigh text-red-400">High : 0</span>
+                    </div>
+                </div>
                 <div class="ClosedShowTasks p-2"></div>
             </div>
 
+
+
+
             <div class="relative bg-gray-500   rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
-                <div class="sticky top-0 bg-black flex items-center justify-center py-2 border-b-[4px] border-white text-white">Stopped</div>
+                <div class="FS sticky top-0 bg-black flex items-center justify-between px-2 xl:px-4 py-2 border-b-[4px] border-white text-white">
+                    <h2 class="xl:text-lg font-semibold">stopped</h2>
+                    <div class="flex gap-3">
+                        <span class="stoppedtotal text-gray-300">Total : 0</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="stoppedlow text-green-400">Low : 0</span>
+                        <span class="stoppedmedium text-yellow-400">Medium : 0</span>
+                        <span class="stoppedhigh text-red-400">High : 0</span>
+                    </div>
+                </div>
                 <div class="StoppedShowTasks p-2"></div>
             </div>
 

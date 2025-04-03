@@ -138,3 +138,10 @@ body {
 
 
 
+@media (max-width: 670px) {
+  .FS {
+      
+      font-size: 10px;
+
+    }
+}
