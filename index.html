@@ -143,24 +143,24 @@
 
 <section id="foraddtaskshow" class="rounded-xl" style="display: none;">
 
-<form action="">
+<form action="" method="post" id="taskForm">
     <div class="flex flex-col bg-yellow-500 h-[530px] w-[300px] gap-6 p-4 rounded-xl">
         <p class="flex justify-center items-center text-[25px] ">add your task</p>
-        <input type="text" class="rounded-lg h-[40px] px-3"placeholder="task name"required>
-        <input type="text" class="rounded-lg h-[40px] px-3"placeholder="task description"required>
-        <select name="" id="" class="addpriority p-2 rounded-lg text-black cursor-pointer"required>
-            <option value="addlow">Low</option>
-            <option value="addmedium">Medium</option>
-            <option value="addhigh">High</option>
+        <input type="text" class="rounded-lg h-[40px] px-3"placeholder="task name"required id="addtaskform-name">
+        <input type="text" class="rounded-lg h-[40px] px-3"placeholder="task description"required id="addtaskform-description">
+        <select name="" id="" class="addpriorityform p-2 rounded-lg text-black cursor-pointer"required>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
         </select>
-        <select name="" id="" class="addstage p-2 rounded-lg text-black cursor-pointer"required>
-            <option value="addtodo">to do</option>
-            <option value="addInprocess">in process</option>
-            <option value="addclosed">closed</option>
-            <option value="addstopped">stopped</option>
+        <select name="" id="" class="addstageform p-2 rounded-lg text-black cursor-pointer"required>
+            <option value="To Do">to do</option>
+            <option value="in Process">in process</option>
+            <option value="Closed">closed</option>
+            <option value="Stopped">stopped</option>
         </select>
-        <input type="date" id="adddate" required class="h-[40px] rounded-lg cursor-pointer">
-        <input type="time" id="addtime" required class="h-[40px] rounded-lg cursor-pointer">
+        <input type="date" id="adddate" required class="h-[40px] rounded-lg cursor-pointer" id="addtaskform-date">
+        <input type="time" id="addtime" required class="h-[40px] rounded-lg cursor-pointer" id="addtaskform-time">
         <div class="flex gap-2">
             <input type="submit" value="save" class="bg-green-600 h-[40px] rounded-lg cursor-pointer flex-1">
             <input type="button" id="btncancelAdd" value="cancel" class="bg-red-600 h-[40px] rounded-lg cursor-pointer flex-1">

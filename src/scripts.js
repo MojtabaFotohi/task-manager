@@ -152,17 +152,7 @@ GetAllData()
 
 
 
-//GET now time  for Created At field
-function addZero_To_single_digits_Number(num){
-    return num<10 ? `0${num}` : num
-}
-const now=new Date()
-const year=now.getFullYear()
-const month=addZero_To_single_digits_Number(now.getMonth()+1)
-const day=addZero_To_single_digits_Number(now.getDate())
-const hours=addZero_To_single_digits_Number(now.getHours())
-const minutes=addZero_To_single_digits_Number(now.getMinutes())
-const fulltime=`${year}-${month}-${day} ${hours}:${minutes}`
+
 
 
 
@@ -519,8 +509,75 @@ document.querySelector('#addTask').addEventListener('click', function() {
 document.querySelector('#btncancelAdd').addEventListener('click', function() {
     let result=document.querySelector('#foraddtaskshow')
     result.classList.remove('adtaskSection')
+    document.getElementById('taskForm').reset();
     
 
 })
+
+
+
+
+
+
+
+//add task POST method
+
+
+
+document.getElementById('taskForm').addEventListener('submit', function(e) {
+    e.preventDefault(); 
+
+
+
+    //GET now time  for Created At field  START
+    function addZero_To_single_digits_Number(num){return num<10 ? `0${num}` : num}
+    const now=new Date()
+    const year=now.getFullYear()
+    const month=addZero_To_single_digits_Number(now.getMonth()+1)
+    const day=addZero_To_single_digits_Number(now.getDate())
+    const hours=addZero_To_single_digits_Number(now.getHours())
+    const minutes=addZero_To_single_digits_Number(now.getMinutes())
+    const fulltime=`${year}-${month}-${day} ${hours}:${minutes}`
+    //GET now time  for Created At field  END
+
+
+
+
+    const taskData = {
+        name: document.getElementById('addtaskform-name').value,
+        description: document.getElementById('addtaskform-description').value,
+        priority: document.querySelector('.addpriorityform').value,
+        stage: document.querySelector('.addstageform').value,
+        dueDate: document.getElementById('adddate').value +" "+ document.getElementById('addtime').value,
+        createdAt: fulltime 
+      };
+    console.log(taskData.priority)
+    console.log(taskData.stage)
+      fetch(APIURL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json',},
+        body: JSON.stringify(taskData)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('server error response');
+        }
+        return response.json();
+      })
+      .then(data => {
+        alert('add task Successfully');
+        console.log('Success:', data);
+        document.getElementById('taskForm').reset();
+        let result=document.querySelector('#foraddtaskshow')
+        result.classList.remove('adtaskSection')
+        GetAllData()
+      })
+      .catch(error => {
+        alert('error to save data ');
+        console.error('Error:', error);
+      });
+});
+
+
 
 
