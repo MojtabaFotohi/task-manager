@@ -127,7 +127,7 @@ async function GetAllData() {
                 default:
                     alert('چنین حالتی در stage وجود ندارد')
             }
-        const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
+        const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-sky-300">
                                     <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                      ${task.priority === 'High' ? 'bg-red-600' : 
                                      task.priority === 'Medium' ? 'bg-yellow-600' : 
@@ -138,7 +138,7 @@ async function GetAllData() {
                                     <p class="py-3">description : ${task.description}</p>
                                     <div class="flex items-center justify-center gap-10">
                                         <button type="button" class="bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white">Edit</button>
-                                        <button type="button" class="bg-red-700    h-[35px] w-[70px]  rounded-lg text-white">Delete</button>
+                                        <button type="button" class="delete-btn bg-red-700    h-[35px] w-[70px]  rounded-lg text-white" data-taskid="${task.id}">Delete</button>
                                     </div>
                                     </div>`
         if(divshowData){
@@ -191,11 +191,13 @@ function clearDisplay(){
 //select option menu
 document.querySelector('.selectmenu').addEventListener('change', function() {
 if (this.value==="allpriorityOP"){
+    clearDisplay()
         GetAllData()
     }
     
     
 if (this.value==="lowOP"){
+    clearDisplay()
         fetch(APIURL)
         .then(response => {
             if (!response.ok) {
@@ -205,7 +207,7 @@ if (this.value==="lowOP"){
         })
         .then(data => {
             let resultLowOP=data.filter(task=>task.priority==="Low")
-            clearDisplay()
+            
             resultLowOP.forEach(tasks => {
                 switch(tasks.stage){
                     case "To Do":
@@ -223,7 +225,7 @@ if (this.value==="lowOP"){
                     default:
                         alert('چنین حالتی در stage وجود ندارد')
                 }
-            const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
+            const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-sky-300">
                                         <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                          ${tasks.priority === 'High' ? 'bg-red-600' : 
                                          tasks.priority === 'Medium' ? 'bg-yellow-600' : 
@@ -234,7 +236,7 @@ if (this.value==="lowOP"){
                                         <p class="py-3">description : ${tasks.description}</p>
                                         <div class="flex items-center justify-center gap-10">
                                             <button type="button" class="bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white">Edit</button>
-                                            <button type="button" class="bg-red-700    h-[35px] w-[70px]  rounded-lg text-white">Delete</button>
+                                            <button type="button" class="delete-btn bg-red-700    h-[35px] w-[70px]  rounded-lg text-white" data-taskid="${tasks.id}">Delete</button>
                                         </div>
                                         </div>`
             if(divshowData){
@@ -261,6 +263,7 @@ if (this.value==="lowOP"){
 
 
 if (this.value==="mediumOP"){
+    clearDisplay()
         fetch(APIURL)
         .then(response => {
             if (!response.ok) {
@@ -270,7 +273,6 @@ if (this.value==="mediumOP"){
         })
         .then(data => {
             let resultMediumOP=data.filter(task=>task.priority==="Medium")
-            clearDisplay()
             resultMediumOP.forEach(tasks => {
                 switch(tasks.stage){
                     case "To Do":
@@ -288,7 +290,7 @@ if (this.value==="mediumOP"){
                     default:
                         alert('چنین حالتی در stage وجود ندارد')
                 }
-            const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
+            const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-sky-300">
                                         <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                          ${tasks.priority === 'High' ? 'bg-red-600' : 
                                          tasks.priority === 'Medium' ? 'bg-yellow-600' : 
@@ -299,7 +301,7 @@ if (this.value==="mediumOP"){
                                         <p class="py-3">description : ${tasks.description}</p>
                                         <div class="flex items-center justify-center gap-10">
                                             <button type="button" class="bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white">Edit</button>
-                                            <button type="button" class="bg-red-700    h-[35px] w-[70px]  rounded-lg text-white">Delete</button>
+                                            <button type="button" class="delete-btn bg-red-700    h-[35px] w-[70px]  rounded-lg text-white" data-taskid="${tasks.id}">Delete</button>
                                         </div>
                                         </div>`
             if(divshowData){
@@ -324,6 +326,7 @@ if (this.value==="mediumOP"){
 
 
 if (this.value==="highOP"){
+    clearDisplay()
         fetch(APIURL)
         .then(response => {
             if (!response.ok) {
@@ -333,9 +336,6 @@ if (this.value==="highOP"){
         })
         .then(data => {
             let resultHighOP=data.filter(task=>task.priority==="High")
-            clearDisplay()
-
-
             resultHighOP.forEach(tasks => {
                 switch(tasks.stage){
                     case "To Do":
@@ -353,7 +353,7 @@ if (this.value==="highOP"){
                     default:
                         alert('چنین حالتی در stage وجود ندارد')
                 }
-            const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
+            const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-sky-300">
                                         <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                          ${tasks.priority === 'High' ? 'bg-red-600' : 
                                          tasks.priority === 'Medium' ? 'bg-yellow-600' : 
@@ -364,7 +364,7 @@ if (this.value==="highOP"){
                                         <p class="py-3">description : ${tasks.description}</p>
                                         <div class="flex items-center justify-center gap-10">
                                             <button type="button" class="bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white">Edit</button>
-                                            <button type="button" class="bg-red-700    h-[35px] w-[70px]  rounded-lg text-white">Delete</button>
+                                            <button type="button" class="delete-btn bg-red-700    h-[35px] w-[70px]  rounded-lg text-white"data-taskid="${tasks.id}">Delete</button>
                                         </div>
                                         </div>`
 
@@ -476,7 +476,7 @@ document.addEventListener('click', function(event) {
                 default:
                     alert('چنین حالتی در stage وجود ندارد')
             }
-        const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
+        const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-sky-300">
                                     <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                      ${searchItem.priority === 'High' ? 'bg-red-600' : 
                                      searchItem.priority === 'Medium' ? 'bg-yellow-600' : 
@@ -487,7 +487,7 @@ document.addEventListener('click', function(event) {
                                     <p class="py-3">description : ${searchItem.description}</p>
                                     <div class="flex items-center justify-center gap-10">
                                         <button type="button" class="bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white">Edit</button>
-                                        <button type="button" class="bg-red-700    h-[35px] w-[70px]  rounded-lg text-white">Delete</button>
+                                        <button type="button" class="delete-btn bg-red-700    h-[35px] w-[70px]  rounded-lg text-white" data-taskid="${searchItem.id}">Delete</button>
                                     </div>
                                     </div>`
         if(divshowData){
@@ -581,3 +581,46 @@ document.getElementById('taskForm').addEventListener('submit', function(e) {
 
 
 
+
+//DELETE method
+
+
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('delete-btn')) {
+      const taskId = e.target.getAttribute('data-taskid');
+
+      confirmBeforeDelete(taskId);
+    }
+  });
+  
+  function confirmBeforeDelete(taskId) {
+    const isConfirmed = confirm('Are you sure you want to delete this task ?');
+    
+    if (isConfirmed) {
+      deleteTask(taskId);
+    }
+  }
+  
+
+
+  function deleteTask(taskId) {
+    fetch(`${APIURL}/${taskId}`, {
+      method: 'DELETE',
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('error delete task');
+      }
+      return response.json();
+    })
+    .then(data => {
+      alert('task delete successfully');
+      const taskCard = document.querySelector(`.delete-btn[data-taskid="${taskId}"]`).closest('.task-card');
+      taskCard.remove();
+      GetAllData()
+    })
+    .catch(error => {
+      alert('error delete task');
+      console.error('Error:', error);
+    });
+  }
