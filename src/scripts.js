@@ -80,7 +80,7 @@ return countOfResultDetails
 
 
 
-//GET ALL DATA
+//GET method to get ALL DATA
 async function GetAllData() {
 
     try{
@@ -137,7 +137,7 @@ async function GetAllData() {
                                     <p class="py-3">date : ${task.dueDate}</p>
                                     <p class="py-3">description : ${task.description}</p>
                                     <div class="flex items-center justify-center gap-10">
-                                        <button type="button" class="bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white">Edit</button>
+                                        <button type="button" class="edit-btn bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white" data-id="${task.id}">Edit</button>
                                         <button type="button" class="delete-btn bg-red-700    h-[35px] w-[70px]  rounded-lg text-white" data-taskid="${task.id}">Delete</button>
                                     </div>
                                     </div>`
@@ -235,7 +235,7 @@ if (this.value==="lowOP"){
                                         <p class="py-3">date : ${tasks.dueDate}</p>
                                         <p class="py-3">description : ${tasks.description}</p>
                                         <div class="flex items-center justify-center gap-10">
-                                            <button type="button" class="bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white">Edit</button>
+                                            <button type="button" class="edit-btn bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white" data-id="${tasks.id}">Edit</button>
                                             <button type="button" class="delete-btn bg-red-700    h-[35px] w-[70px]  rounded-lg text-white" data-taskid="${tasks.id}">Delete</button>
                                         </div>
                                         </div>`
@@ -300,7 +300,7 @@ if (this.value==="mediumOP"){
                                         <p class="py-3">date : ${tasks.dueDate}</p>
                                         <p class="py-3">description : ${tasks.description}</p>
                                         <div class="flex items-center justify-center gap-10">
-                                            <button type="button" class="bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white">Edit</button>
+                                            <button type="button" class="edit-btn bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white" data-id="${tasks.id}">Edit</button>
                                             <button type="button" class="delete-btn bg-red-700    h-[35px] w-[70px]  rounded-lg text-white" data-taskid="${tasks.id}">Delete</button>
                                         </div>
                                         </div>`
@@ -363,7 +363,7 @@ if (this.value==="highOP"){
                                         <p class="py-3">date : ${tasks.dueDate}</p>
                                         <p class="py-3">description : ${tasks.description}</p>
                                         <div class="flex items-center justify-center gap-10">
-                                            <button type="button" class="bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white">Edit</button>
+                                            <button type="button" class="edit-btn bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white" data-id="${tasks.id}">Edit</button>
                                             <button type="button" class="delete-btn bg-red-700    h-[35px] w-[70px]  rounded-lg text-white"data-taskid="${tasks.id}">Delete</button>
                                         </div>
                                         </div>`
@@ -486,7 +486,7 @@ document.addEventListener('click', function(event) {
                                     <p class="py-3">date : ${searchItem.dueDate}</p>
                                     <p class="py-3">description : ${searchItem.description}</p>
                                     <div class="flex items-center justify-center gap-10">
-                                        <button type="button" class="bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white">Edit</button>
+                                        <button type="button" class="edit-btn bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white" data-id="${searchItem.id}">Edit</button>
                                         <button type="button" class="delete-btn bg-red-700    h-[35px] w-[70px]  rounded-lg text-white" data-taskid="${searchItem.id}">Delete</button>
                                     </div>
                                     </div>`
@@ -551,8 +551,7 @@ document.getElementById('taskForm').addEventListener('submit', function(e) {
         dueDate: document.getElementById('adddate').value +" "+ document.getElementById('addtime').value,
         createdAt: fulltime 
       };
-    console.log(taskData.priority)
-    console.log(taskData.stage)
+
       fetch(APIURL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json',},
@@ -601,8 +600,6 @@ document.addEventListener('click', function(e) {
     }
   }
   
-
-
   function deleteTask(taskId) {
     fetch(`${APIURL}/${taskId}`, {
       method: 'DELETE',
@@ -624,3 +621,126 @@ document.addEventListener('click', function(e) {
       console.error('Error:', error);
     });
   }
+
+
+
+
+
+
+
+//PUT method
+
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('edit-btn')) {
+    const taskId = e.target.getAttribute('data-id');
+    openEditForm(taskId)
+
+
+
+    const templateEditForm=`
+                                <form action="" id="taskEditForm">
+                                    <div class="flex flex-col bg-yellow-500 h-[530px] w-[300px] gap-6 p-4 rounded-xl">
+                                        <p class="flex justify-center items-center text-[25px] ">Edit your task</p>
+                                        <input type="text" class="rounded-lg h-[40px] px-3"placeholder="task name"required id="edittaskform-name">
+                                        <input type="text" class="rounded-lg h-[40px] px-3"placeholder="task description"required id="edittaskform-description">
+                                        <select name="" id="" class="editpriorityform p-2 rounded-lg text-black cursor-pointer"required>
+                                            <option value="Low">Low</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="High">High</option>
+                                        </select>
+                                        <select name="" id="" class="editstageform p-2 rounded-lg text-black cursor-pointer"required>
+                                            <option value="To Do">to do</option>
+                                            <option value="in Process">in process</option>
+                                            <option value="Closed">closed</option>
+                                            <option value="Stopped">stopped</option>
+                                        </select>
+                                        <input type="date" id="editdate" required class="h-[40px] rounded-lg cursor-pointer" id="edittaskform-date">
+                                        <input type="time" id="edittime" required class="h-[40px] rounded-lg cursor-pointer" id="edittaskform-time">
+                                        <div class="flex gap-2">
+                                            <input type="submit" value="Edit" id="editBtnFinal" class="bg-green-600 h-[40px] rounded-lg cursor-pointer flex-1">
+                                            <input type="button" id="btncanceledit" value="cancel" class="bg-red-600 h-[40px] rounded-lg cursor-pointer flex-1">
+                                        </div>
+                                    </div>
+                                </form>`
+
+
+        let result=document.querySelector('#foredittaskform')
+        result.innerHTML=templateEditForm
+        result.classList.add('adtaskSection')
+
+        //cancel-editTask btn
+        document.querySelector('#btncanceledit').addEventListener('click', function() {
+        let result=document.querySelector('#foredittaskform')
+        result.classList.remove('adtaskSection')})
+
+
+
+        async function openEditForm(taskId) {
+            
+              const response = await fetch(`${APIURL}/${taskId}`);        
+              const taskforfill = await response.json();
+
+              let name = document.getElementById('edittaskform-name').value=taskforfill.name
+              let description = document.getElementById('edittaskform-description').value=taskforfill.description
+              let priority = document.querySelector('.editpriorityform').value=taskforfill.priority
+              let stage = document.querySelector('.editstageform').value=taskforfill.stage
+              let date = document.getElementById('editdate').value=taskforfill.dueDate.split(" ")[0]
+              let time = document.getElementById('edittime').value=taskforfill.dueDate.split(" ")[1]
+
+
+
+document.getElementById('taskEditForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+        //GET now time  for Created At field  START
+        function addZero_To_single_digits_Number(num){return num<10 ? `0${num}` : num}
+        const now=new Date()
+        const year=now.getFullYear()
+        const month=addZero_To_single_digits_Number(now.getMonth()+1)
+        const day=addZero_To_single_digits_Number(now.getDate())
+        const hours=addZero_To_single_digits_Number(now.getHours())
+        const minutes=addZero_To_single_digits_Number(now.getMinutes())
+        const fulltime=`${year}-${month}-${day} ${hours}:${minutes}`
+        //GET now time  for Created At field  END
+
+
+        const EditedtaskData = {
+            name: document.getElementById('edittaskform-name').value,
+            description: document.getElementById('edittaskform-description').value,
+            priority: document.querySelector('.editpriorityform').value,
+            stage: document.querySelector('.editstageform').value,
+            dueDate: document.getElementById('editdate').value +" "+ document.getElementById('edittime').value,
+            createdAt: fulltime };
+
+            fetch(`${APIURL}/${taskId}`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json',},
+                body: JSON.stringify(EditedtaskData)
+              }).then(response => {
+                  if (!response.ok) {
+                    throw new Error('error edit task');
+                  }
+                  return response.json();
+                }) .then(data => {
+                    alert('task edited successfully')
+                    document.querySelector('#foredittaskform').innerHTML = ''
+                    document.querySelector('#foredittaskform').classList.remove('adtaskSection')
+                    location.reload()
+                })  
+        })
+
+
+}}});
+
+
+
+
+
+
+
+
+
+
+
+  
