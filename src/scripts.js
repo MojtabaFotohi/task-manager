@@ -570,6 +570,7 @@ document.getElementById('taskForm').addEventListener('submit', function(e) {
         let result=document.querySelector('#foraddtaskshow')
         result.classList.remove('adtaskSection')
         GetAllData()
+        location.reload()
       })
       .catch(error => {
         alert('error to save data ');
@@ -741,6 +742,143 @@ document.getElementById('taskEditForm').addEventListener('submit', function(e) {
 
 
 
+//chart
+
+async function createCircleCharts() {
+    try {
+        const countOfResultDetails = await counterDetails();
+        const totalPriority = Object.values(countOfResultDetails).reduce((sum, stage) => {return sum + stage.low + stage.medium + stage.high;}, 0);
+        const totalStages = Object.values(countOfResultDetails).reduce((sum, stage) => {return sum + stage.total;}, 0);
+        createPriorityCircle(totalPriority, countOfResultDetails);
+        createStagesCircle(totalStages, countOfResultDetails); 
+    } catch (err) {
+        console.error("Error creat circle charts:", err);
+    }
+}
+
+function createPriorityCircle(total, data) {
+    if (total === 0) return;
+    const lowCount = Object.values(data).reduce((sum, stage) => sum + stage.low, 0);
+    const mediumCount = Object.values(data).reduce((sum, stage) => sum + stage.medium, 0);
+    const highCount = Object.values(data).reduce((sum, stage) => sum + stage.high, 0);
+    const lowPercent = (lowCount / total) * 100;
+    const mediumPercent = (mediumCount / total) * 100;
+    const highPercent = (highCount / total) * 100;
+    const conicGradient = `
+        conic-gradient(
+            #4CAF50 0% ${lowPercent}%,
+            #FFC107 ${lowPercent}% ${lowPercent + mediumPercent}%,
+            #F44336 ${lowPercent + mediumPercent}% 100%
+        )`;
+    const circle1 = document.querySelector('.circle1');
+    circle1.style.background = conicGradient;
+    circle1.style.border = 'none';
+    circle1.title = `Priorities: Low (${lowCount}), Medium (${mediumCount}), High (${highCount})`;
+    const legend1 = document.createElement('div');
+    legend1.className = 'chart-legend';
+    legend1.innerHTML = `<div class="grid">
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #4CAF50"></span>
+            <span class="legend-text">Low: ${lowPercent} %</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #FFC107"></span>
+            <span class="legend-text">Medium: ${mediumPercent} %</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #F44336"></span>
+            <span class="legend-text">High: ${highPercent} %</span>
+        </div>
+        </div>`;
+    
+    circle1.parentNode.insertBefore(legend1, circle1.nextSibling);
+}
 
 
-  
+
+function createStagesCircle(total, data) {
+    if (total === 0) return;
+    const todoPercent = (data.todo.total / total) * 100;
+    const inprocessPercent = (data.inprocess.total / total) * 100;
+    const closedPercent = (data.closed.total / total) * 100;
+    const stoppedPercent = (data.stopped.total / total) * 100;
+    const conicGradient = `
+        conic-gradient(
+            #2196F3 0% ${todoPercent}%,
+            #9C27B0 ${todoPercent}% ${todoPercent + inprocessPercent}%,
+            #00BCD4 ${todoPercent + inprocessPercent}% ${todoPercent + inprocessPercent + closedPercent}%,
+            #607D8B ${todoPercent + inprocessPercent + closedPercent}% 100%
+        )
+    `;
+    
+    const circle2 = document.querySelector('.circle2');
+    circle2.style.background = conicGradient;
+    circle2.style.border = 'none';
+    circle2.title = `Stages: To Do (${data.todo.total}), In Process (${data.inprocess.total}), Closed (${data.closed.total}), Stopped (${data.stopped.total})`;
+    const legend2 = document.createElement('div');
+    legend2.className = 'chart-legend';
+    legend2.innerHTML = `
+    <div class="grid">
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #2196F3"></span>
+            <span class="legend-text">To Do: ${todoPercent} %</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #9C27B0"></span>
+            <span class="legend-text">In Process: ${inprocessPercent} %</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #00BCD4"></span>
+            <span class="legend-text">Closed: ${closedPercent} %</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background-color: #607D8B"></span>
+            <span class="legend-text">Stopped: ${stoppedPercent} %</span>
+        </div>
+        </div>`;
+    
+    circle2.parentNode.insertBefore(legend2, circle2.nextSibling);
+}
+
+
+const style = document.createElement('style');
+style.textContent = `
+    .chart-legend {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 20px;
+        margin-top: 15px;
+        font-size: 14px;
+    }
+    
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .legend-color {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+    }
+    
+    .legend-text {
+        color: #333;
+    }
+    
+    @media (min-width: 1024px) {
+        .chart-legend {
+            font-size: 16px;
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+        }
+    }
+`;
+document.head.appendChild(style);
+document.addEventListener('DOMContentLoaded', createCircleCharts);
