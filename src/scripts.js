@@ -127,7 +127,7 @@ async function GetAllData() {
                 default:
                     alert('چنین حالتی در stage وجود ندارد')
             }
-        const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-sky-300">
+        const TemplateShowTask =    `<div class="task-card bg-[#0D5C63] w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-[#247B7B]">
                                     <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                      ${task.priority === 'High' ? 'bg-red-600' : 
                                      task.priority === 'Medium' ? 'bg-yellow-600' : 
@@ -225,7 +225,7 @@ if (this.value==="lowOP"){
                     default:
                         alert('چنین حالتی در stage وجود ندارد')
                 }
-            const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-sky-300">
+            const TemplateShowTask =    `<div class="task-card bg-[#0D5C63] w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-[#247B7B]">
                                         <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                          ${tasks.priority === 'High' ? 'bg-red-600' : 
                                          tasks.priority === 'Medium' ? 'bg-yellow-600' : 
@@ -290,7 +290,7 @@ if (this.value==="mediumOP"){
                     default:
                         alert('چنین حالتی در stage وجود ندارد')
                 }
-            const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-sky-300">
+            const TemplateShowTask =    `<div class="task-card bg-[#0D5C63] w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-[#247B7B]">
                                         <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                          ${tasks.priority === 'High' ? 'bg-red-600' : 
                                          tasks.priority === 'Medium' ? 'bg-yellow-600' : 
@@ -353,7 +353,7 @@ if (this.value==="highOP"){
                     default:
                         alert('چنین حالتی در stage وجود ندارد')
                 }
-            const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-sky-300">
+            const TemplateShowTask =    `<div class="task-card bg-[#0D5C63] w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-[#247B7B]">
                                         <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                          ${tasks.priority === 'High' ? 'bg-red-600' : 
                                          tasks.priority === 'Medium' ? 'bg-yellow-600' : 
@@ -476,7 +476,7 @@ document.addEventListener('click', function(event) {
                 default:
                     alert('چنین حالتی در stage وجود ندارد')
             }
-        const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-sky-300">
+        const TemplateShowTask =    `<div class="task-card bg-[#0D5C63] w-full h-[70%] rounded-lg p-2 mb-5 hover:bg-[#247B7B]">
                                     <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                      ${searchItem.priority === 'High' ? 'bg-red-600' : 
                                      searchItem.priority === 'Medium' ? 'bg-yellow-600' : 
@@ -598,6 +598,7 @@ document.addEventListener('click', function(e) {
     
     if (isConfirmed) {
       deleteTask(taskId);
+      
     }
   }
   
@@ -615,6 +616,7 @@ document.addEventListener('click', function(e) {
       alert('task delete successfully');
       const taskCard = document.querySelector(`.delete-btn[data-taskid="${taskId}"]`).closest('.task-card');
       taskCard.remove();
+      location.reload()
       GetAllData()
     })
     .catch(error => {
@@ -641,7 +643,7 @@ document.addEventListener('click', function(e) {
 
     const templateEditForm=`
                                 <form action="" id="taskEditForm">
-                                    <div class="flex flex-col bg-yellow-500 h-[530px] w-[300px] gap-6 p-4 rounded-xl">
+                                    <div class="flex flex-col bg-[#247B7B] h-[530px] w-[300px] gap-6 p-4 rounded-xl">
                                         <p class="flex justify-center items-center text-[25px] ">Edit your task</p>
                                         <input type="text" class="rounded-lg h-[40px] px-3"placeholder="task name"required id="edittaskform-name">
                                         <input type="text" class="rounded-lg h-[40px] px-3"placeholder="task description"required id="edittaskform-description">
@@ -670,10 +672,16 @@ document.addEventListener('click', function(e) {
         result.innerHTML=templateEditForm
         result.classList.add('adtaskSection')
 
+
         //cancel-editTask btn
         document.querySelector('#btncanceledit').addEventListener('click', function() {
         let result=document.querySelector('#foredittaskform')
-        result.classList.remove('adtaskSection')})
+        result.classList.remove('adtaskSection')
+        document.querySelector('#foredittaskform').innerHTML = ''
+        document.querySelector('#foredittaskform').classList.remove('adtaskSection')
+
+    })
+        
 
 
 
@@ -766,9 +774,9 @@ function createPriorityCircle(total, data) {
     const highPercent = (highCount / total) * 100;
     const conicGradient = `
         conic-gradient(
-            #4CAF50 0% ${lowPercent}%,
-            #FFC107 ${lowPercent}% ${lowPercent + mediumPercent}%,
-            #F44336 ${lowPercent + mediumPercent}% 100%
+            #4BC0C0 0% ${lowPercent}%,
+            #FFCE56 ${lowPercent}% ${lowPercent + mediumPercent}%,
+            #FF6384 ${lowPercent + mediumPercent}% 100%
         )`;
     const circle1 = document.querySelector('.circle1');
     circle1.style.background = conicGradient;
@@ -778,16 +786,16 @@ function createPriorityCircle(total, data) {
     legend1.className = 'chart-legend';
     legend1.innerHTML = `<div class="grid">
         <div class="legend-item">
-            <span class="legend-color" style="background-color: #4CAF50"></span>
-            <span class="legend-text">Low: ${lowPercent} %</span>
+            <span class="legend-color" style="background-color: #4BC0C0"></span>
+            <span class="legend-text">Low: ${lowPercent.toFixed(2)} %</span>
         </div>
         <div class="legend-item">
-            <span class="legend-color" style="background-color: #FFC107"></span>
-            <span class="legend-text">Medium: ${mediumPercent} %</span>
+            <span class="legend-color" style="background-color: #FFCE56"></span>
+            <span class="legend-text">Medium: ${mediumPercent.toFixed(2)} %</span>
         </div>
         <div class="legend-item">
-            <span class="legend-color" style="background-color: #F44336"></span>
-            <span class="legend-text">High: ${highPercent} %</span>
+            <span class="legend-color" style="background-color: #FF6384"></span>
+            <span class="legend-text">High: ${highPercent.toFixed(2)} %</span>
         </div>
         </div>`;
     
@@ -805,8 +813,8 @@ function createStagesCircle(total, data) {
     const conicGradient = `
         conic-gradient(
             #2196F3 0% ${todoPercent}%,
-            #9C27B0 ${todoPercent}% ${todoPercent + inprocessPercent}%,
-            #00BCD4 ${todoPercent + inprocessPercent}% ${todoPercent + inprocessPercent + closedPercent}%,
+            #4C6FD0 ${todoPercent}% ${todoPercent + inprocessPercent}%,
+            #A6D083 ${todoPercent + inprocessPercent}% ${todoPercent + inprocessPercent + closedPercent}%,
             #607D8B ${todoPercent + inprocessPercent + closedPercent}% 100%
         )
     `;
@@ -821,19 +829,19 @@ function createStagesCircle(total, data) {
     <div class="grid">
         <div class="legend-item">
             <span class="legend-color" style="background-color: #2196F3"></span>
-            <span class="legend-text">To Do: ${todoPercent} %</span>
+            <span class="legend-text">To Do: ${todoPercent.toFixed(2)} %</span>
         </div>
         <div class="legend-item">
-            <span class="legend-color" style="background-color: #9C27B0"></span>
-            <span class="legend-text">In Process: ${inprocessPercent} %</span>
+            <span class="legend-color" style="background-color: #4C6FD0"></span>
+            <span class="legend-text">In Process: ${inprocessPercent.toFixed(2)} %</span>
         </div>
         <div class="legend-item">
-            <span class="legend-color" style="background-color: #00BCD4"></span>
-            <span class="legend-text">Closed: ${closedPercent} %</span>
+            <span class="legend-color" style="background-color: #A6D083"></span>
+            <span class="legend-text">Closed: ${closedPercent.toFixed(2)} %</span>
         </div>
         <div class="legend-item">
             <span class="legend-color" style="background-color: #607D8B"></span>
-            <span class="legend-text">Stopped: ${stoppedPercent} %</span>
+            <span class="legend-text">Stopped: ${stoppedPercent.toFixed(2)} %</span>
         </div>
         </div>`;
     

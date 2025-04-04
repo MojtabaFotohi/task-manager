@@ -10,13 +10,13 @@
 
 <body class="overflow-x-hidden">
 
-<header class="bg-zinc-900 h-50 ">
-    <h1 class="flex justify-center text-[25px] font-bold  py-6 text-white">Task Manager</h1>
+<header class="bg-[#0D5C63] h-50 ">
+    <h1 class="flex justify-center text-[25px] font-bold  py-6 text-[#FFFFFA]">Task Manager</h1>
 </header>
 
 
 <section id="preheader" >
-    <div class=" flex justify-center lg:justify-between py-5 bg-sky-900 items-center  px-3 gap-2">
+    <div class=" flex justify-center lg:justify-between py-5 bg-[#44A1A0] items-center  px-3 gap-2">
         <div id="search" >
             <input type="search" name="" id="" placeholder="Search ...!" class="p-2 rounded-lg text-black w-[130px] sm:w-[200px] md:w-[300px] lg:w-[500px]">
         </div>
@@ -29,31 +29,31 @@
             </select>
         </div>
         <div>
-            <button id="addTask" type="button" class="bg-green-700  rounded-lg py-3 px-2  text-md w-[90px] sm:w-[90px] md:w-[120px] lg:w-[120px] xl:w-[180px] 2xl:w-[400px]">add Task</button>
+            <button id="addTask" type="button" class="bg-[#0d5c63] rounded-lg py-3 px-2  text-md w-[90px] sm:w-[90px] md:w-[120px] lg:w-[120px] xl:w-[180px] 2xl:w-[400px] text-[#FFFFFA]">add Task</button>
         </div>
     </div>
 </section>
 
 
 <section id="body" class="flex w-full h-auto lg:h-[1200px] " >
-    <div id="left-side-details" class="task-details bg-green-700 w-1/3  xl:w-1/5 h-auto p-1">
-
-            <p>Task Name :</p>
+    <div id="left-side-details" class="task-details bg-[#247b7b] w-1/3  xl:w-1/5 h-auto p-1">
+            <br>
+            <p class="rounded-lg bg-white p-1 flex justify-center text-[12px] lg:text-[20px]" >Task Name </p>
             <p id="taskName" class="task-text"></p>
             <hr>
-            <p>Task Description :</p>
+            <p class="rounded-lg bg-white p-1 flex justify-center text-[12px] lg:text-[20px]" >Task Description </p>
             <p id="taskDescription" class="task-text"></p>
             <hr>
-            <p>Task Priority :</p>
+            <p class="rounded-lg bg-white p-1 flex justify-center text-[12px] lg:text-[20px]" >Task Priority </p>
             <p id="taskPriority" class="task-text"></p>
             <hr>
-            <p>Task Stage :</p>
+            <p class="rounded-lg bg-white p-1 flex justify-center text-[12px] lg:text-[20px]" >Task Stage </p>
             <p id="taskStage" class="task-text"></p>
             <hr>
-            <p>Task Due Date :</p>
+            <p class="rounded-lg bg-white p-1 flex justify-center text-[12px] lg:text-[20px]" >Task Due Date </p>
             <p id="taskDueDate" class="task-text"></p>
             <hr>
-            <p>Task Created At :</p>
+            <p class="rounded-lg bg-white p-1 flex justify-center text-[12px] lg:text-[20px]" >Task Created At </p>
             <p id="taskCreatedAt" class="task-text"></p>
             
 
@@ -62,7 +62,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4  m-[20px] ">
             
 
-            <div class="relative bg-yellow-500 rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
+            <div class="relative bg-[#78CDD7] rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
                 <div class="FS sticky top-0 bg-black flex items-center justify-between px-2 xl:px-4 py-2 border-b-[4px] border-white text-white">
                     <h2 class="xl:text-lg font-semibold">To Do</h2>
                     <div class="flex gap-3">
@@ -79,7 +79,7 @@
 
 
 
-            <div class="relative bg-blue-500   rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
+            <div class="relative bg-[#78CDD7]   rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
                 <div class="FS sticky top-0 bg-black flex items-center justify-between px-2 xl:px-4 py-2 border-b-[4px] border-white text-white">
                     <h2 class="xl:text-lg font-semibold">in Process</h2>
                     <div class="flex gap-3">
@@ -98,7 +98,7 @@
 
 
 
-            <div class="relative bg-pink-500   rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
+            <div class="relative bg-[#78CDD7]   rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
                 <div class="FS sticky top-0 bg-black flex items-center justify-between px-2 xl:px-4 py-2 border-b-[4px] border-white text-white">
                     <h2 class="xl:text-lg font-semibold">closed</h2>
                     <div class="flex gap-3">
@@ -116,7 +116,7 @@
 
 
 
-            <div class="relative bg-gray-500   rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
+            <div class="relative bg-[#78CDD7]   rounded-lg min-h-[350px] max-h-[350px] overflow-y-auto">
                 <div class="FS sticky top-0 bg-black flex items-center justify-between px-2 xl:px-4 py-2 border-b-[4px] border-white text-white">
                     <h2 class="xl:text-lg font-semibold">stopped</h2>
                     <div class="flex gap-3">
@@ -144,7 +144,7 @@
 <section id="foraddtaskshow" class="rounded-xl" style="display: none;">
 
 <form action="" method="post" id="taskForm">
-    <div class="flex flex-col bg-yellow-500 h-[530px] w-[300px] gap-6 p-4 rounded-xl">
+    <div class="flex flex-col bg-[#247B7B] h-[530px] w-[300px] gap-6 p-4 rounded-xl">
         <p class="flex justify-center items-center text-[25px] ">add your task</p>
         <input type="text" class="rounded-lg h-[40px] px-3"placeholder="task name"required id="addtaskform-name">
         <input type="text" class="rounded-lg h-[40px] px-3"placeholder="task description"required id="addtaskform-description">
@@ -172,8 +172,8 @@
 
 <section id="foredittaskform" class="rounded-xl"></section>
 
-<footer class="bg-zinc-900 h-50  ">
-    <h1 class="flex justify-center text-[25px] font-bold  py-6 text-white gap-1">Created by <a href="https://github.com/MojtabaFotohi" class="flex gap-3">Mojtaba Fotohi <img src="public/icons/githubLogo.png" alt="githubLogo" width="40px" height="40px" class="bg-white rounded-[50%] "></a></h1>
+<footer class="bg-[#0D5C63] h-50  ">
+    <h1 class="flex justify-center text-[25px] font-bold  py-6 text-[#FFFFFA] gap-1">Created by <a href="https://github.com/MojtabaFotohi" class="flex gap-3">Mojtaba Fotohi <img src="public/icons/githubLogo.png" alt="githubLogo" width="40px" height="40px" class="bg-white rounded-[50%] "></a></h1>
 </footer>
     
 
