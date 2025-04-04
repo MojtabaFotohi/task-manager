@@ -127,12 +127,12 @@ async function GetAllData() {
                 default:
                     alert('چنین حالتی در stage وجود ندارد')
             }
-        const TemplateShowTask =    `<div class="bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
+        const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
                                     <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                      ${task.priority === 'High' ? 'bg-red-600' : 
                                      task.priority === 'Medium' ? 'bg-yellow-600' : 
                                     'bg-green-600'}">
-                                    ${task.priority}</p>
+                                    ${task.priority}</p><input type="hidden" value="${task.id}">
                                     <p class="py-3">Name : ${task.name}</p>
                                     <p class="py-3">date : ${task.dueDate}</p>
                                     <p class="py-3">description : ${task.description}</p>
@@ -233,12 +233,12 @@ if (this.value==="lowOP"){
                     default:
                         alert('چنین حالتی در stage وجود ندارد')
                 }
-            const TemplateShowTask =    `<div class="bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
+            const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
                                         <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                          ${tasks.priority === 'High' ? 'bg-red-600' : 
                                          tasks.priority === 'Medium' ? 'bg-yellow-600' : 
                                         'bg-green-600'}">
-                                        ${tasks.priority}</p>
+                                        ${tasks.priority}</p><input type="hidden" value="${task.id}">
                                         <p class="py-3">Name : ${tasks.name}</p>
                                         <p class="py-3">date : ${tasks.dueDate}</p>
                                         <p class="py-3">description : ${tasks.description}</p>
@@ -298,12 +298,12 @@ if (this.value==="mediumOP"){
                     default:
                         alert('چنین حالتی در stage وجود ندارد')
                 }
-            const TemplateShowTask =    `<div class="bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
+            const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
                                         <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                          ${tasks.priority === 'High' ? 'bg-red-600' : 
                                          tasks.priority === 'Medium' ? 'bg-yellow-600' : 
                                         'bg-green-600'}">
-                                        ${tasks.priority}</p>
+                                        ${tasks.priority}</p><input type="hidden" value="${task.id}">
                                         <p class="py-3">Name : ${tasks.name}</p>
                                         <p class="py-3">date : ${tasks.dueDate}</p>
                                         <p class="py-3">description : ${tasks.description}</p>
@@ -363,12 +363,12 @@ if (this.value==="highOP"){
                     default:
                         alert('چنین حالتی در stage وجود ندارد')
                 }
-            const TemplateShowTask =    `<div class="bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
+            const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
                                         <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
                                          ${tasks.priority === 'High' ? 'bg-red-600' : 
                                          tasks.priority === 'Medium' ? 'bg-yellow-600' : 
                                         'bg-green-600'}">
-                                        ${tasks.priority}</p>
+                                        ${tasks.priority}</p><input type="hidden" value="${task.id}">
                                         <p class="py-3">Name : ${tasks.name}</p>
                                         <p class="py-3">date : ${tasks.dueDate}</p>
                                         <p class="py-3">description : ${tasks.description}</p>
@@ -403,3 +403,38 @@ if (this.value==="highOP"){
 
 
 
+
+
+
+
+//show each task details
+
+document.addEventListener('click', function(event) {
+    const taskCard = event.target.closest('.task-card');
+    if (!taskCard) return; 
+    if (event.target.tagName === 'BUTTON') return;
+    const hiddenInput = taskCard.querySelector('input[type="hidden"]');
+    if (hiddenInput) {
+    fetch(APIURL)
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('server error response')
+        }
+        return response.json()
+        })
+        .then(data => {
+        let cardOutafterClick=data.filter(task=>task.id===hiddenInput.value)
+
+        document.getElementById('taskName').innerText=cardOutafterClick[0].name
+        document.getElementById('taskDescription').innerText=cardOutafterClick[0].description
+        document.getElementById('taskPriority').innerText=cardOutafterClick[0].priority
+        document.getElementById('taskStage').innerText=cardOutafterClick[0].stage
+        document.getElementById('taskDueDate').innerText=cardOutafterClick[0].dueDate
+        document.getElementById('taskCreatedAt').innerText=cardOutafterClick[0].createdAt   
+    
+    })
+
+    } else {
+      alert('no any card found');
+    }
+  });
