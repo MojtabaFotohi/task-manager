@@ -238,7 +238,7 @@ if (this.value==="lowOP"){
                                          ${tasks.priority === 'High' ? 'bg-red-600' : 
                                          tasks.priority === 'Medium' ? 'bg-yellow-600' : 
                                         'bg-green-600'}">
-                                        ${tasks.priority}</p><input type="hidden" value="${task.id}">
+                                        ${tasks.priority}</p><input type="hidden" value="${tasks.id}">
                                         <p class="py-3">Name : ${tasks.name}</p>
                                         <p class="py-3">date : ${tasks.dueDate}</p>
                                         <p class="py-3">description : ${tasks.description}</p>
@@ -303,7 +303,7 @@ if (this.value==="mediumOP"){
                                          ${tasks.priority === 'High' ? 'bg-red-600' : 
                                          tasks.priority === 'Medium' ? 'bg-yellow-600' : 
                                         'bg-green-600'}">
-                                        ${tasks.priority}</p><input type="hidden" value="${task.id}">
+                                        ${tasks.priority}</p><input type="hidden" value="${tasks.id}">
                                         <p class="py-3">Name : ${tasks.name}</p>
                                         <p class="py-3">date : ${tasks.dueDate}</p>
                                         <p class="py-3">description : ${tasks.description}</p>
@@ -368,7 +368,7 @@ if (this.value==="highOP"){
                                          ${tasks.priority === 'High' ? 'bg-red-600' : 
                                          tasks.priority === 'Medium' ? 'bg-yellow-600' : 
                                         'bg-green-600'}">
-                                        ${tasks.priority}</p><input type="hidden" value="${task.id}">
+                                        ${tasks.priority}</p><input type="hidden" value="${tasks.id}">
                                         <p class="py-3">Name : ${tasks.name}</p>
                                         <p class="py-3">date : ${tasks.dueDate}</p>
                                         <p class="py-3">description : ${tasks.description}</p>
@@ -438,3 +438,69 @@ document.addEventListener('click', function(event) {
       alert('no any card found');
     }
   });
+
+
+
+
+
+
+
+
+
+//search input
+
+  document.querySelector('input[type="search"]').addEventListener('input', function(event) {
+    let searchinputUser=event.target.value.trim()
+    fetch(APIURL)
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('server error response')
+        }
+        return response.json()
+        })
+        .then(data => {
+        let cardOutafterClick = data.filter(task => {const searchTerm = searchinputUser.trim()
+            if (searchTerm === "") return false
+            return task.name.toLowerCase().includes(searchTerm.toLowerCase());})
+
+         clearDisplay()
+         
+        if (searchinputUser==="")
+            GetAllData()
+
+        cardOutafterClick.forEach(searchItem=>{
+
+            switch(searchItem.stage){
+                case "To Do":
+                    divshowData=document.querySelector('.ToDoShowTasks')
+                    break;
+                case "in Process":
+                    divshowData=document.querySelector('.InProcessShowTasks')
+                    break;
+                case "Closed":
+                    divshowData=document.querySelector('.ClosedShowTasks')
+                    break;
+                case "Stopped":
+                    divshowData=document.querySelector('.StoppedShowTasks')
+                    break;
+                default:
+                    alert('چنین حالتی در stage وجود ندارد')
+            }
+        const TemplateShowTask =    `<div class="task-card bg-sky-700 w-full h-[70%] rounded-lg p-2 mb-5">
+                                    <p class=" h-[30px] w-[80px]  flex items-center justify-center rounded-lg text-white
+                                     ${searchItem.priority === 'High' ? 'bg-red-600' : 
+                                     searchItem.priority === 'Medium' ? 'bg-yellow-600' : 
+                                    'bg-green-600'}">
+                                    ${searchItem.priority}</p><input type="hidden" value="${searchItem.id}">
+                                    <p class="py-3">Name : ${searchItem.name}</p>
+                                    <p class="py-3">date : ${searchItem.dueDate}</p>
+                                    <p class="py-3">description : ${searchItem.description}</p>
+                                    <div class="flex items-center justify-center gap-10">
+                                        <button type="button" class="bg-orange-700 h-[35px] w-[70px]  rounded-lg text-white">Edit</button>
+                                        <button type="button" class="bg-red-700    h-[35px] w-[70px]  rounded-lg text-white">Delete</button>
+                                    </div>
+                                    </div>`
+        if(divshowData){
+            divshowData.innerHTML +=TemplateShowTask}})
+    })
+});
