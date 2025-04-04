@@ -504,3 +504,23 @@ document.addEventListener('click', function(event) {
             divshowData.innerHTML +=TemplateShowTask}})
     })
 });
+
+
+
+//add-task btn
+document.querySelector('#addTask').addEventListener('click', function() {
+    let result=document.querySelector('#foraddtaskshow')
+    result.classList.add('adtaskSection')
+
+
+})
+
+//cancel-addtask btn
+document.querySelector('#btncancelAdd').addEventListener('click', function() {
+    let result=document.querySelector('#foraddtaskshow')
+    result.classList.remove('adtaskSection')
+    
+
+})
+
+

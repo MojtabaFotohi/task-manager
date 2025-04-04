@@ -64,6 +64,8 @@ html{
 body {
   font-family: 'Vazir', sans-serif;
   font-weight: 500;
+
+  
  
 }
 
@@ -134,5 +136,20 @@ body {
 
     }
 }
+
+
+
+
+.adtaskSection{
+  display: block !important; 
+  position: fixed; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  z-index: 10 ;
+  box-shadow: 0 0 150px 150px rgba(0, 255, 255, 0.7);
+}
+
+
 
 
